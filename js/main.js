@@ -21,6 +21,24 @@ function sprawdzaniecheckBox(nazwaKlasy) {
         for (let i = 0; i < pobraneWszytkieSosyZinputu.length; i++) {
             order.napoje.push(pobraneWszytkieSosyZinputu[i].checked)
         }
+        if (order.adress !== '' && order.email !== '' && 
+        order.name !== '' && order.napoje.length>0 && 
+        order.sosy.length>0 && order.tel !=='' ) {
+            console.log(order)
+        }
+        else {
+            alert ('Uzupełnij zamówienie')
+        }
+        order = {
+            pizza: '',
+            sosy: [],
+            name: '',
+            adress: '',
+            email: '',
+            tel: '',
+            text: '',
+            napoje: [] 
+        }
     }
 }
 function takeOrder() {
@@ -36,11 +54,21 @@ function takeOrder() {
     const tel = document.getElementById('tel').value
     order.tel = tel
     // pobieram adress
-    const adress = document.getElementById('adress')
+    const adress = document.getElementById('adress').value
     order.adress = adress
     // pobieram textarea 
     const msg = document.getElementById('msg').value
     order.text = msg
+
+    // pobieranie selecta
+    const pizzaSelect = document.getElementById('pizza').value
+    if(pizzaSelect =="0"){
+        alert("Wybierz pizze")
+    }
+    else {
+        order.pizza = pizzaSelect
+    }
+
     console.log("takeOrder -> nameC", order)
 }
 // function odejmowanie() {
